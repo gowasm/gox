@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/8byt/gox/parser"
-	"github.com/8byt/gox/scanner"
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/parser"
+	"github.com/gowasm/gox/scanner"
+	"github.com/gowasm/gox/token"
 )
 
 // should test for all of these

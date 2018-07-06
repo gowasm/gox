@@ -6,8 +6,9 @@ package scanner_test
 
 import (
 	"fmt"
-	"github.com/8byt/gox/scanner"
-	"github.com/8byt/gox/token"
+
+	"github.com/gowasm/gox/scanner"
+	"github.com/gowasm/gox/token"
 )
 
 func ExampleScanner_Scan() {

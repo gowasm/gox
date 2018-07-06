@@ -5,7 +5,7 @@
 package scanner
 
 import (
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/token"
 	"io/ioutil"
 	"os"
 	"path/filepath"

@@ -14,8 +14,8 @@ import (
 	"text/tabwriter"
 	"unicode"
 
-	"github.com/8byt/gox/ast"
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/ast"
+	"github.com/gowasm/gox/token"
 )
 
 const (
@@ -106,7 +106,7 @@ func (p *printer) internalError(msg ...interface{}) {
 	if debug {
 		fmt.Print(p.pos.String() + ": ")
 		fmt.Println(msg...)
-		panic("github.com/8byt/gox/printer")
+		panic("github.com/gowasm/gox/printer")
 	}
 }
 
@@ -964,7 +964,7 @@ func (p *printer) print(args ...interface{}) {
 
 		default:
 			fmt.Fprintf(os.Stderr, "print: unsupported argument %v (%T)\n", arg, arg)
-			panic("github.com/8byt/gox/printer type")
+			panic("github.com/gowasm/gox/printer type")
 		}
 		// data != ""
 
@@ -1120,7 +1120,7 @@ func (p *printer) printNode(node interface{}) error {
 	return nil
 
 unsupported:
-	return fmt.Errorf("github.com/8byt/gox/printer: unsupported node type %T", node)
+	return fmt.Errorf("github.com/gowasm/gox/printer: unsupported node type %T", node)
 }
 
 // ----------------------------------------------------------------------------

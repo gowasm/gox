@@ -1,4 +1,4 @@
-// This is a package for testing comment placement by github.com/8byt/gox/printer.
+// This is a package for testing comment placement by github.com/gowasm/gox/printer.
 //
 package main
 

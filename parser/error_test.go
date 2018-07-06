@@ -23,13 +23,14 @@
 package parser
 
 import (
-	"github.com/8byt/gox/scanner"
-	"github.com/8byt/gox/token"
 	"io/ioutil"
 	"path/filepath"
 	"regexp"
 	"strings"
 	"testing"
+
+	"github.com/gowasm/gox/scanner"
+	"github.com/gowasm/gox/token"
 )
 
 const testdata = "testdata"

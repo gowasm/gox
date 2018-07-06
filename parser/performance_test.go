@@ -5,9 +5,10 @@
 package parser
 
 import (
-	"github.com/8byt/gox/token"
 	"io/ioutil"
 	"testing"
+
+	"github.com/gowasm/gox/token"
 )
 
 func BenchmarkParse(b *testing.B) {

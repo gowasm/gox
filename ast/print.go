@@ -8,10 +8,11 @@ package ast
 
 import (
 	"fmt"
-	"github.com/8byt/gox/token"
 	"io"
 	"os"
 	"reflect"
+
+	"github.com/gowasm/gox/token"
 )
 
 // A FieldFilter may be provided to Fprint to control the output.

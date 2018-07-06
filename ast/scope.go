@@ -9,7 +9,8 @@ package ast
 import (
 	"bytes"
 	"fmt"
-	"github.com/8byt/gox/token"
+
+	"github.com/gowasm/gox/token"
 )
 
 // A Scope maintains the set of named language entities declared

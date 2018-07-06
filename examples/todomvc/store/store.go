@@ -1,10 +1,10 @@
 package store
 
 import (
-	"github.com/8byt/gox/examples/todomvc/actions"
-	"github.com/8byt/gox/examples/todomvc/dispatcher"
-	"github.com/8byt/gox/examples/todomvc/store/model"
 	"github.com/gopherjs/vecty/storeutil"
+	"github.com/gowasm/gox/examples/todomvc/actions"
+	"github.com/gowasm/gox/examples/todomvc/dispatcher"
+	"github.com/gowasm/gox/examples/todomvc/store/model"
 )
 
 var (

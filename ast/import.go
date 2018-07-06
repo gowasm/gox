@@ -5,9 +5,10 @@
 package ast
 
 import (
-	"github.com/8byt/gox/token"
 	"sort"
 	"strconv"
+
+	"github.com/gowasm/gox/token"
 )
 
 // SortImports sorts runs of consecutive import lines in import blocks in f.

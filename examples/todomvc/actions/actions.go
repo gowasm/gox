@@ -1,6 +1,6 @@
 package actions
 
-import "github.com/8byt/gox/examples/todomvc/store/model"
+import "github.com/gowasm/gox/examples/todomvc/store/model"
 
 // ReplaceItems is an action that replaces all items with the specified ones.
 type ReplaceItems struct {

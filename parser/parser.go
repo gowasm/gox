@@ -22,9 +22,9 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/8byt/gox/ast"
-	"github.com/8byt/gox/scanner"
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/ast"
+	"github.com/gowasm/gox/scanner"
+	"github.com/gowasm/gox/token"
 )
 
 // The parser structure holds the parser's internal state.
@@ -442,7 +442,7 @@ func (p *parser) atComma(context string, follow token.Token) bool {
 
 func assert(cond bool, msg string) {
 	if !cond {
-		panic("github.com/8byt/gox/parser internal error: " + msg)
+		panic("github.com/gowasm/gox/parser internal error: " + msg)
 	}
 }
 
@@ -2322,7 +2322,7 @@ type parseSpecFunction func(doc *ast.CommentGroup, keyword token.Token, iota int
 
 func isValidImport(lit string) bool {
 	const illegalChars = `!"#$%&'()*,:;<=>?[\]^{|}` + "`\uFFFD"
-	s, _ := strconv.Unquote(lit) // github.com/8byt/gox/scanner returns a legal string literal
+	s, _ := strconv.Unquote(lit) // github.com/gowasm/gox/scanner returns a legal string literal
 	for _, r := range s {
 		if !unicode.IsGraphic(r) || unicode.IsSpace(r) || strings.ContainsRune(illegalChars, r) {
 			return false

@@ -7,10 +7,12 @@ package ast_test
 import (
 	"bytes"
 	"fmt"
-	"github.com/8byt/gox/ast"
-	"go/format"
-	"github.com/8byt/gox/parser"
-	"github.com/8byt/gox/token"
+
+	"github.com/gowasm/gox/format"
+
+	"github.com/gowasm/gox/ast"
+	"github.com/gowasm/gox/parser"
+	"github.com/gowasm/gox/token"
 )
 
 // This example demonstrates how to inspect the AST of a Go program.

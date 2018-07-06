@@ -12,7 +12,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/token"
 )
 
 // ----------------------------------------------------------------------------

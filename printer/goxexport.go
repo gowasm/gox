@@ -6,8 +6,8 @@ import (
 
 	"unicode"
 
-	"github.com/8byt/gox/ast"
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/ast"
+	"github.com/gowasm/gox/token"
 )
 
 // Map html-style to actual js event names

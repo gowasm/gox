@@ -10,10 +10,10 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/8byt/gox/ast"
-	"github.com/8byt/gox/parser"
-	"github.com/8byt/gox/printer"
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/ast"
+	"github.com/gowasm/gox/parser"
+	"github.com/gowasm/gox/printer"
+	"github.com/gowasm/gox/token"
 )
 
 // Dummy test function so that godoc does not use the entire file as example.

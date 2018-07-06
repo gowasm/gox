@@ -58,7 +58,7 @@ func (p *PageView) renderItemList() *vecty.HTML {
 	</section>
 }
 ```
-from [our TodoMVC implementation](https://github.com/8byt/gox/blob/master/examples/todomvc/components/pageview.gox)
+from [our TodoMVC implementation](https://github.com/gowasm/gox/blob/master/examples/todomvc/components/pageview.gox)
 
 ## alright, I'm convinced, get me started
 Wow! Okay I don't think we thought that would happen.

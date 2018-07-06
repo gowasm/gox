@@ -2,17 +2,19 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// To avoid a cyclic dependency with github.com/8byt/gox/parser, this file is in a separate package.
+// To avoid a cyclic dependency with github.com/gowasm/gox/parser, this file is in a separate package.
 
 package ast_test
 
 import (
 	"bytes"
-	"github.com/8byt/gox/ast"
-	"go/format"
-	"github.com/8byt/gox/parser"
-	"github.com/8byt/gox/token"
 	"testing"
+
+	"github.com/gowasm/gox/format"
+
+	"github.com/gowasm/gox/ast"
+	"github.com/gowasm/gox/parser"
+	"github.com/gowasm/gox/token"
 )
 
 const input = `package p

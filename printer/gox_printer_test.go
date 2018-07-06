@@ -9,8 +9,8 @@ import (
 
 	"path/filepath"
 
-	"github.com/8byt/gox/parser"
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/parser"
+	"github.com/gowasm/gox/token"
 )
 
 const goxTestsDir = "../goxtests"

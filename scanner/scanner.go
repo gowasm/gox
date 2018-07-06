@@ -16,7 +16,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/token"
 )
 
 // An ErrorHandler may be provided to Scanner.Init. If a syntax error is

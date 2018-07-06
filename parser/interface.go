@@ -15,8 +15,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/8byt/gox/ast"
-	"github.com/8byt/gox/token"
+	"github.com/gowasm/gox/ast"
+	"github.com/gowasm/gox/token"
 )
 
 // If src != nil, readSource converts src to a []byte if possible;

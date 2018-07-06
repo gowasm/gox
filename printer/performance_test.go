@@ -9,12 +9,13 @@ package printer
 
 import (
 	"bytes"
-	"github.com/8byt/gox/ast"
-	"github.com/8byt/gox/parser"
 	"io"
 	"io/ioutil"
 	"log"
 	"testing"
+
+	"github.com/gowasm/gox/ast"
+	"github.com/gowasm/gox/parser"
 )
 
 var testfile *ast.File

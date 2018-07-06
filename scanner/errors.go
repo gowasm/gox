@@ -6,9 +6,10 @@ package scanner
 
 import (
 	"fmt"
-	"github.com/8byt/gox/token"
 	"io"
 	"sort"
+
+	"github.com/gowasm/gox/token"
 )
 
 // In an ErrorList, an error is represented by an *Error.
