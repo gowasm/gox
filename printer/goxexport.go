@@ -1,6 +1,7 @@
 package printer
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -113,10 +114,15 @@ func goxToVecty(gox *ast.GoxExpr) ast.Expr {
 				args = append(args, expr)
 			}
 		}
-
+		fmt.Println(gox.TagName, gox.Ctag, gox.Otag)
+		for _, arg := range args {
+			fmt.Println(arg.Pos(), arg.End())
+		}
+		fmt.Println(args)
 		return newCallExpr(
-			newSelectorExpr("elem", gox.TagName.Name),
-			args,
+			newSelectorExpr("elem", strings.Title(gox.TagName.Name)),
+			args[1:],
+			//nil,
 		)
 	}
 }
