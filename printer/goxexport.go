@@ -115,7 +115,7 @@ func goxToVecty(gox *ast.GoxExpr) ast.Expr {
 		}
 
 		return newCallExpr(
-			newSelectorExpr("vecty", "Tag"),
+			newSelectorExpr("elem", gox.TagName.Name),
 			args,
 		)
 	}
@@ -177,7 +177,7 @@ func mapProps(goxAttrs []*ast.GoxAttrStmt) []ast.Expr {
 		} else if mappedName, ok := attrMap[attr.Lhs.Name]; ok {
 			// if it's a vecty controlled prop
 			expr = newCallExpr(
-				newSelectorExpr("vecty", "Property"),
+				newSelectorExpr("prop", mappedName),
 				[]ast.Expr{
 					&ast.BasicLit{
 						Kind:  token.STRING,

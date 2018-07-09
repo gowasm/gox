@@ -1,11 +1,9 @@
 package main
 
-import (
-	"github.com/gopherjs/vecty"
-)
+import "github.com/gopherjs/vecty"
 
-func getHTML() *vecty.HTML {
-	return vecty.Tag("div")
+func getHTML() vecty.ComponentOrHTML {
+	return elem.div("div")
 }
 
-func main() {}
+func main()	{}

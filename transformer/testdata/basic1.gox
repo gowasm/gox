@@ -2,7 +2,7 @@ package main
 
 import "github.com/gopherjs/vecty"
 
-func getHTML() vecty.HTML {
+func getHTML() vecty.ComponentOrHTML{
     return <div></div>
 }
 
