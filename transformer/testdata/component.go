@@ -1,20 +1,22 @@
 package main
 
 import (
-	"github.com/gopherjs/vecty"
+	"github.com/gowasm/vecty"
+
+	"github.com/gowasm/vecty/elem"
 )
 
-func getHTML2() vecty.HTML {
-	return elem.span("span", &MyComponent{Parameter1: "Hello World"})
+func getHTML2() vecty.ComponentOrHTML {
+	return elem.Span(&MyComponent{Parameter1: "Hello World"})
 }
 
 type MyComponent struct {
 	vecty.Core
-	Parameter1	string
+	Parameter1 string
 }
 
-func (c *MyComponent) Render() *vecty.HTML {
-	return elem.div("div", c.Parameter1)
+func (c *MyComponent) Render() vecty.ComponentOrHTML {
+	return elem.Div(vecty.Text(c.Parameter1))
 }
 
-func main()	{}
+//func main()	{}

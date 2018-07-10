@@ -11,6 +11,70 @@ import (
 	"github.com/gowasm/gox/token"
 )
 
+var elemNameMap = map[string]string{
+	"a":          "Anchor",
+	"abbr":       "Abbreviation",
+	"b":          "Bold",
+	"bdi":        "BidirectionalIsolation",
+	"bdo":        "BidirectionalOverride",
+	"blockquote": "BlockQuote",
+	"br":         "Break",
+	"cite":       "Citation",
+	"col":        "Column",
+	"colgroup":   "ColumnGroup",
+	"datalist":   "DataList",
+	"dd":         "Description",
+	"del":        "DeletedText",
+	"dfn":        "Definition",
+	"dl":         "DescriptionList",
+	"dt":         "DefinitionTerm",
+	"em":         "Emphasis",
+	"fieldset":   "FieldSet",
+	"figcaption": "FigureCaption",
+	"h1":         "Heading1",
+	"h2":         "Heading2",
+	"h3":         "Heading3",
+	"h4":         "Heading4",
+	"h5":         "Heading5",
+	"h6":         "Heading6",
+	"hgroup":     "HeadingsGroup",
+	"hr":         "HorizontalRule",
+	"i":          "Italic",
+	"iframe":     "InlineFrame",
+	"img":        "Image",
+	"ins":        "InsertedText",
+	"kbd":        "KeyboardInput",
+	"li":         "ListItem",
+	"menuitem":   "MenuItem",
+	"nav":        "Navigation",
+	"noframes":   "NoFrames",
+	"noscript":   "NoScript",
+	"ol":         "OrderedList",
+	"optgroup":   "OptionsGroup",
+	"p":          "Paragraph",
+	"param":      "Parameter",
+	"pre":        "Preformatted",
+	"q":          "Quote",
+	"rp":         "RubyParenthesis",
+	"rt":         "RubyText",
+	"rtc":        "RubyTextContainer",
+	"s":          "Strikethrough",
+	"samp":       "Sample",
+	"sub":        "Subscript",
+	"sup":        "Superscript",
+	"tbody":      "TableBody",
+	"textarea":   "TextArea",
+	"td":         "TableData",
+	"tfoot":      "TableFoot",
+	"th":         "TableHeader",
+	"thead":      "TableHead",
+	"tr":         "TableRow",
+	"u":          "Underline",
+	"ul":         "UnorderedList",
+	"var":        "Variable",
+	"wbr":        "WordBreakOpportunity",
+}
+
 // Map html-style to actual js event names
 var eventMap = map[string]string{
 	"onAbort":          "abort",
@@ -60,9 +124,9 @@ var eventMap = map[string]string{
 }
 
 var attrMap = map[string]string{
-	"autofocus":   "autofocus",
-	"checked":     "checked",
-	"class":       "className",
+	"autofocus": "autofocus",
+	"checked":   "checked",
+	//	"class":       "className",
 	"for":         "htmlFor",
 	"href":        "href",
 	"id":          "id",
@@ -73,6 +137,7 @@ var attrMap = map[string]string{
 }
 
 func goxToVecty(gox *ast.GoxExpr) ast.Expr {
+	fmt.Println("GOX:", gox.TagName, gox.Ctag, gox.Otag)
 	isComponent := unicode.IsUpper(rune(gox.TagName.Name[0]))
 
 	if isComponent {
@@ -87,19 +152,16 @@ func goxToVecty(gox *ast.GoxExpr) ast.Expr {
 		// Add the attributes
 		args = append(args, mapProps(gox.Attrs)...)
 
-		// Add the contents
+		// Add the contents of the tag
 		for _, expr := range gox.X {
 			switch expr := expr.(type) {
-			// TODO figure out what's a better thing to do here
-			// do we want to error on compile or figure out what to do based on context?
-			// (I think the latter)
-			// Fallback to regular behavior, don't wrap this yet
-			//case *ast.GoExpr:
-			//	e := newCallExpr(
-			//		newSelectorExpr("vecty", "Text"),
-			//		[]ast.Expr{expr},
-			//	)
-			//	args = append(args, e)
+			// just throw the Go stuff right in there
+			case *ast.GoExpr:
+				e := newCallExpr(
+					newSelectorExpr("vecty", "Text"),
+					[]ast.Expr{expr},
+				)
+				args = append(args, e)
 
 			case *ast.BareWordsExpr:
 				if len(strings.TrimSpace(expr.Value)) == 0 {
@@ -119,9 +181,17 @@ func goxToVecty(gox *ast.GoxExpr) ast.Expr {
 			fmt.Println(arg.Pos(), arg.End())
 		}
 		fmt.Println(args)
+
+		var elemname string
+		if tg, ok := elemNameMap[gox.TagName.Name]; ok {
+			elemname = tg
+		} else {
+			elemname = strings.Title(gox.TagName.Name)
+		}
 		return newCallExpr(
-			newSelectorExpr("elem", strings.Title(gox.TagName.Name)),
-			args[1:],
+			// check the elemMap here TODO
+			newSelectorExpr("elem", elemname),
+			args[1:], // don't include the tag itself as an arg (or you get vecty.Div("div"))
 			//nil,
 		)
 	}
@@ -176,10 +246,23 @@ func mapProps(goxAttrs []*ast.GoxAttrStmt) []ast.Expr {
 		}
 
 		var expr ast.Expr
-
+		fmt.Println("LHS attr", attr.Lhs.Name)
 		// if prop is an event listener (e.g. "onClick")
 		if _, ok := eventMap[attr.Lhs.Name]; ok {
 			expr = newEventListener(attr)
+		} else if attr.Lhs.Name == "class" {
+			// if it's a class statement
+			expr = newCallExpr(
+				newSelectorExpr("vecty", "Markup"),
+				[]ast.Expr{
+					newCallExpr(
+						newSelectorExpr("vecty", "Class"),
+						[]ast.Expr{
+							attr.Rhs,
+						}),
+				},
+			)
+
 		} else if mappedName, ok := attrMap[attr.Lhs.Name]; ok {
 			// if it's a vecty controlled prop
 			expr = newCallExpr(

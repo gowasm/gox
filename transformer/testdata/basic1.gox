@@ -1,9 +1,13 @@
 package main
 
-import "github.com/gopherjs/vecty"
+import (
+    "github.com/gopherjs/vecty"
+	"github.com/gowasm/vecty/elem"
+	"github.com/gowasm/vecty/props"
+)
 
 func getHTML() vecty.ComponentOrHTML{
-    return <div></div>
+    return <div class="blue"></div>
 }
 
 func main() {}
